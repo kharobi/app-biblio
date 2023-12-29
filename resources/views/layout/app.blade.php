@@ -1,6 +1,6 @@
 @include('partials._header')
 
-<body class="layout-light side-menu">
+<body class="layout-light side-menu" >
     {{-- <div class="mobile-search">
         <form action="/" class="search-form">
             <img src="{{ asset('assets/img/svg/search.svg') }}" alt="search" class="svg">
@@ -8,20 +8,20 @@
     </form>
     </div> --}}
     
-    <header class="header-top">
-        @include('partials._top_nav')
-    </header>
-    <div class="container-fluid">
-       <br>
-       <br>
-       <br>
-       <br>
-       <br>
-       <br>
-    </div>
-    <div class="container-fluid">
+    <header class="">
         @include('partials._top_nav1')
-    </div>
+    </header>
+    {{-- <div class="container-fluid">
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+    </div> --}}
+    {{-- <div class="container-fluid">
+        @include('partials._top_nav1')
+    </div> --}}
     <main class="main-content">
         {{-- <div class="sidebar-wrapper">
             <aside class="sidebar sidebar-collapse" id="sidebar">
@@ -79,6 +79,7 @@
     <script src="{{ asset('assets/js/style.js') }}"></script>
 
     @livewireScripts
+    @stack('scripts1')
 </body>
 
 </html>

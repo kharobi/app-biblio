@@ -203,14 +203,14 @@
 
                  <div class="slider-card">
                     <a  href="{{ route('ecommerce.product_detail',['language' => app()->getLocale(),'id'=>$doc->id])}}">
-                        <div class="d-flex justify-content-center align-items-center img-standard mx-auto mt-2 mb-2">
+                        <div class="d-flex justify-content-center align-items-center mx-auto mt-2">
                             <img src="{{  Storage::url($doc->cover_image)   }}" alt="">
                         </div>
                     </a>
                     <div class="p-1">
                         <h6 class="text-center">{{ $doc->titre }}</h6>
-                        <p class="text-center"><strong>Auteur:</strong> {{ $doc->person }}</p>
-                        <p class="text-center clamp-3">{{ $doc->description }}</p>
+                        <p class="text-center"><strong>  الكاتب:</strong> {{ $doc->person }}</p>
+                        {{-- <p class="text-center clamp-3">{{ $doc->description }}</p> --}}
                     </div>
                     
                </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\Type;
@@ -19,8 +20,8 @@ class EcommerceController extends Controller {
         $documents = Document::all();
        // $docs_carousel = $documents->last()->get(1);
         //dd($docs_carousel);
-        $types = Type::all();
-        return view('pages.applications.ecommerce.products',compact('types','documents','title','description'));
+        $cats = Categorie::all();
+        return view('pages.applications.ecommerce.products',compact('cats','documents','title','description'));
     }
 
     /**
@@ -73,15 +74,15 @@ class EcommerceController extends Controller {
     }
 
     public function storeProduct(Request $request){
-
+       // dd($request->get('documenr_file'));
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
             'author' => 'required|max:255',
             'cover_image' => 'required|image|mimes:jpeg,png,webp,jpg,gif,svg|max:2048',
-            'document_file' => 'required|mimes:pdf|max:20480',
+            'document_file' => 'required|mimes:pdf|max:5120',
         ]);
-        //dd($request->get('type'));
+       //dd($validatedData);***************pourquoi pdf de grande taille nenregistre
         $document = new Document([
             'titre' => $request->get('title'),
             'description' => $request->get('content'),
@@ -104,7 +105,7 @@ class EcommerceController extends Controller {
         $document->document_file = 'document_files/' . $documentFileName;
 
         $document->save();
-
+        
         // Création du document dans la base de données
         
 

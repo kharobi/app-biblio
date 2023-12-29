@@ -10,8 +10,8 @@ use Usamamuneerchaudhary\Commentify\Traits\Commentable;
 
 class Document extends Model
 {
-    protected $fillable = ['titre', 'description', 'person', 'cover_image', 'document_file','date_doc','type_id'];
     use Commentable;
+    protected $fillable = ['titre', 'description', 'person', 'cover_image', 'document_file','date_doc','type_id'];
 
     public function type(){
         return $this->belongsTo(Type::class);

@@ -11,6 +11,12 @@ class Personne extends Model
 {
     protected $fillable = ['nom','prenom','arme','grade','date_naissance','login','mdp','lieu_naissance','etat','admin','ar_nom','ar_prenom','ar_arme','ar_grade','ar_lieu_naissance','an'];
     use HasUserAvatar;
+
+    
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     public function document():BelongsToMany{
 
         return $this->belongsToMany(Document::class,'commentaires')->withPivot('commentaire');
