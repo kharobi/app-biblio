@@ -207,7 +207,7 @@
                             <img src="{{  Storage::url($doc->cover_image)   }}" alt="">
                         </div>
                     </a>
-                    <div class="p-1">
+                    <div class="p-1" id="titreCarou">
                         <h6 class="text-center">{{ $doc->titre }}</h6>
                         <p class="text-center"><strong>  الكاتب:</strong> {{ $doc->person }}</p>
                         {{-- <p class="text-center clamp-3">{{ $doc->description }}</p> --}}

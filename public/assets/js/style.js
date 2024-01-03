@@ -26,3 +26,14 @@ $(document).ready(function(){
         }
     })
 })
+
+
+let select = document.getElementById("selectNavLink");
+let list = document.getElementById("listNavLink");
+
+select.onclick = function(){
+    list.classList.toggle("open");
+}
+
+
+

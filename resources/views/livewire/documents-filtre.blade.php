@@ -155,9 +155,9 @@
                                 {{-- search bouton --}}
 
                                 {{-- <span class="project-result-showing fs-14 color-gray ms-xl-25 me-xl-0 text-center mt-lg-0 mt-20">
-                                    إظهار<span>{{ $documents->count() }}</span> نتائج </span>
+                                    إظهار<span></span> نتائج </span> --}}
                                </div>
-                                           <div class="project-top-right d-flex flex-wrap align-items-center">
+                                           {{-- <div class="project-top-right d-flex flex-wrap align-items-center">
                                            <div class="project-category flex-wrap d-flex align-items-center">
                                            <p class="fs-14 color-gray text-capitalize">sort by:</p>
                                            <div class="project-tap project-tab__product">
@@ -172,9 +172,9 @@
                                                <a class="nav-link" id="activity-tab" data-bs-toggle="pill" href="#activity" role="tab" aria-controls="activity" aria-selected="false">Newest</a>
                                                </li>
                                                <li class="nav-item">
-                                               <a class="nav-link" id="draft-tab" data-bs-toggle="" href="{{ route('ecommerce.add_product',app()->getLocale()) }}" role="tab" aria-controls="draft" aria-selected="false">add product</a>
-                                               
+                                               <a class="nav-link" id="draft-tab" data-bs-toggle="" href="{{ route('ecommerce.add_product',app()->getLocale()) }}" role="tab" aria-controls="draft" aria-selected="false">add product</a>                                               
                                                </li>
+                                               
                                            </ul>
                                            </div>
                                            </div>

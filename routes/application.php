@@ -18,6 +18,8 @@ use App\Http\Controllers\FilemanagerController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\RoleController;
+
 
 /************************ Application Routes Start ******************************/
 Route::group(['middleware'=>'auth'],function(){
@@ -55,6 +57,15 @@ Route::group(['middleware'=>'auth'],function(){
                 Route::get('orders',[EcommerceController::class,'orders'])->name('orders');
                 Route::get('sellers',[EcommerceController::class,'sellers'])->name('sellers');
                 Route::get('invoice',[EcommerceController::class,'invoice'])->name('invoice');
+
+
+                Route::resource('roles', RoleController::class);
+                Route::resource('users', UserController::class);
+                //Route::delete('users', 'UserController@destroy')->name('destroy-user');
+
+
+
+
             });
         
             Route::group(['prefix'=>'social','as'=>'social.'],function(){

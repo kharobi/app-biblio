@@ -21,7 +21,6 @@ class SousCategorie extends Component
         
         return view('livewire.sous-categorie',[
             'cats' => Categorie::all(),
-            'types' => $this->types,
         ]);
     }
 

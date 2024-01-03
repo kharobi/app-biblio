@@ -1,85 +1,106 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class UserController extends Controller {
     
-    /**
-     * Display user members of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index(){
-        $title = "User Members";
-        $description = "Some description for the page";
-        return view('pages.applications.user.member',compact('title','description'));
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+   
+    public function index(Request $request)
+    {
+        $data = User::latest()->paginate(5);
+        return view('pages.applications.ecommerce.users.index',compact('data'));
     }
 
-    /**
-     * Display user grid of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function grid(){
-        $title = "User Grid";
-        $description = "Some description for the page";
-        return view('pages.applications.user.grid',compact('title','description'));
+    public function create()
+    {
+        $roles = Role::pluck('name','name')->all();
+        return view('pages.applications.ecommerce.users.create',compact('roles'));
     }
 
-    /**
-     * Display user list of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function list(){
-        $title = "User List";
-        $description = "Some description for the page";
-        return view('pages.applications.user.list',compact('title','description'));
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+        ]);
+    
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+    
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+    
+        return redirect()->route('ecommerce.users.index',app()->getLocale())
+                        ->with('success','User created successfully');
+    }
+    
+    public function show(Request $request)
+    {
+        //dd($request->user);
+        $user = User::find($request->user);
+        return view('pages.applications.ecommerce.users.show',compact('user'));
+    }
+    
+    public function edit(Request $request)
+    {
+        $user = User::find($request->user);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+    
+        return view('pages.applications.ecommerce.users.edit',compact('user','roles','userRole'));
     }
 
-    /**
-     * Display user grid style of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function gridStyle(){
-        $title = "User Grid Style List";
-        $description = "Some description for the page";
-        return view('pages.applications.user.grid_style',compact('title','description'));
+    public function update(Request $request)
+    {
+        //dd($request->user);
+        //dd($request->input('roles'));
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$request->user,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
+        ]);
+    
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));    
+        }
+    
+        $user = User::find($request->user);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$request->user)->delete();
+    
+        $user->assignRole($request->input('roles'));
+    
+        return redirect()->route('ecommerce.users.index',app()->getLocale())
+                        ->with('success','User updated successfully');
     }
-
-    /**
-     * Display user group of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function userGroup(){
-        $title = "User Group List";
-        $description = "Some description for the page";
-        return view('pages.applications.user.user_group',compact('title','description'));
-    }
-
-    /**
-     * Display user add of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function add(){
-        $title = "User Add";
-        $description = "Some description for the page";
-        return view('pages.applications.user.add',compact('title','description'));
-    }
-
-    /**
-     * Display user table of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function table(){
-        $title = "User Data Table";
-        $description = "Some description for the page";
-        return view('pages.applications.user.data_table',compact('title','description'));
+    
+    public function destroy(Request $request)
+    {
+        //dd($request->user);
+        $user = User::find($request->user);
+        if($user != null){
+            $user->delete();
+            return redirect()->route('ecommerce.users.index',app()->getLocale())
+                            ->with('success','User deleted successfully');
+        }
+        else{
+            return redirect()->route('ecommerce.users.index',app()->getLocale())
+                            ->with('faild','User not deleted ');
+        }
+        
     }
 }

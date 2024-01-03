@@ -682,7 +682,7 @@
                     </div>
                 </div>
             </li> --}}
-            {{-- <li class="nav-settings">
+            <li class="nav-settings">
                 <div class="dropdown-custom">
                     <a href="javascript:;" class="nav-item-toggle">
                         <img src="{{ asset('assets/img/setting.png') }}" alt="img">
@@ -779,7 +779,7 @@
                         </div>
                     @endif
                 </div>
-            </li> --}}
+            </li>
             <li class="nav-author">
                 <div class="dropdown-custom">
                     <a href="" class="nav-item-toggle"><img src="{{ asset('assets/img/author-nav.jpg') }}" alt="" class="rounded-circle">

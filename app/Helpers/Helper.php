@@ -14,7 +14,7 @@ class Helper {
     public static function rlt_ext( $current_locale = '' ) {
         $current_locale = ( ! empty( $current_locale ) ) ? $current_locale :  app()->getLocale();
         return '.rtl';
-        // return self::is_rtl( $current_locale ) ? '.rtl' : '';
+        //return self::is_rtl( $current_locale ) ? '.rtl' : '';
     }
 
     public static function get_translation_url( $locale = '' ) {

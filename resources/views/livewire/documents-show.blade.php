@@ -9,7 +9,7 @@
                   <div class="row" style="margin-top: 30px;">
                     @foreach ($documents as $document)
                         <div class="col-md-3 py-3 py-md-0 mb-4">
-                        <div class="card">
+                        <div class="card" id="cardShow">
                             <a id="voir-plus" href="{{ route('ecommerce.product_detail',['language' => app()->getLocale(),'id'=>$document->id])}}">
                             <img src="{{  Storage::url($document->cover_image)   }}" alt="">
                             <div class="card-body">

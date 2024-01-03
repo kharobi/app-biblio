@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Usamamuneerchaudhary\Commentify\Providers\CommentifyServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

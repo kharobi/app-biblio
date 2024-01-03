@@ -13,6 +13,8 @@ class Document extends Model
     use Commentable;
     protected $fillable = ['titre', 'description', 'person', 'cover_image', 'document_file','date_doc','type_id'];
 
+    //protected $filterFields = ['titre', 'description', 'person', 'cover_image', 'document_file','date_doc','type_id'];
+
     public function type(){
         return $this->belongsTo(Type::class);
     }

@@ -85,3 +85,23 @@ $(document).ready(function(){
         }
     })
 })
+
+let select1 = document.getElementById("select");
+let list1 = document.getElementById("list");
+let selectText1=document.getElementById("selectText");
+let options1 =document.getElementsByClassName("options");
+let searchText1 = document.getElementById("search-text");
+
+select1.onclick = function(){
+    list1.classList.toggle("open");
+}
+
+for(option of options1){
+    
+    option.onclick = function(){
+        selectText1.innerHTML = this.innerHTML;
+        searchText1.placeholder = 'Search in ' + selectText1.innerHTML;
+    }
+
+}
+
