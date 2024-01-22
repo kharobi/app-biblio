@@ -3,11 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Document;
-use Livewire\WithPagination;
 use App\Models\Type;
 
-use function PHPUnit\Framework\isNull;
 
 class DocumentsFiltre extends Component
 {

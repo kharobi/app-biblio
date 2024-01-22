@@ -58,27 +58,7 @@
       <div class="col-lg-8 align-self-baseline">
 
 
-        <div class="container-bar">
-          <div class="search-bar">
-  
-              <div id="select">
-                  <!-- <img src="drag_drop_icon.png"> -->
-  
-                  <p id="selectText">All Categories</p>
-                  <ul id="list">
-                      <li class="options">All Categories</li>
-                      <li class="options">Electronic</li>
-                      <li class="options">Furnitures</li>
-                      <li class="options">Sport</li>
-                      <li class="options">Fashion</li>
-  
-                  </ul>
-              </div>
-              <input type="text" id="search-text" placeholder="Searche in all categories">
-
-          </div>
-      </div>
-
+        @livewire('search-category')
 
 
       

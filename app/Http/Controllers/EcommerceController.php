@@ -35,19 +35,6 @@ class EcommerceController extends Controller {
         return view('pages.applications.ecommerce.product_list',compact('title','description'));
     }
 
-    public function showPdf(Request $request){
-
-        //dd($request->pdf);
-        //$pdfPath = $request->file('pdfFile')->store('pdfs', 'public');
-       
-        // Créer le lien complet vers le fichier PDF
-        $pdfLink = asset("storage/app/public/$request->pdf");
-        //dd($pdfLink);
-
-        // Rediriger vers la vue avec le lien PDF
-        return view('pages.applications.ecommerce.showPdf')->with('pdfLink', $pdfLink);
-    }
-
     /**
      * Display ecommerce product details of the resource.
      *
@@ -154,5 +141,31 @@ class EcommerceController extends Controller {
         $title = "Ecommerce Invoice";
         $description = "Some description for the page";
         return view('pages.applications.ecommerce.invoice',compact('title','description'));
+    }
+
+
+    public function showpdf(Request $request){
+
+        $document = Document::find($request->id);
+
+        $file = storage_path($document->document_file);
+        //dd($file);
+
+        // $headers = [
+        //     'Content-Type' => 'application/pdf',
+        //     //'Content-Disposition' => 'inline; filename="' . $document->document_file . '"',
+        //     'Content-Disposition' => 'inline; '.$document->document_file,
+        // ];
+
+        // //return response()->streamDownload($file, $headers);
+
+        // return response()->file($file, [
+        //     'Content-Disposition' => 'inline; filename="'. $file .'"'
+        //   ]);
+
+
+        //   $file = public_path("/files/" . $nama_file);
+        
+        return view('pages.applications.ecommerce.afficher-pdf',compact('document'));
     }
 }

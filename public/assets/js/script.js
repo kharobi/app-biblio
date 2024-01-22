@@ -100,8 +100,9 @@ for(option of options1){
     
     option.onclick = function(){
         selectText1.innerHTML = this.innerHTML;
-        searchText1.placeholder = 'Search in ' + selectText1.innerHTML;
+        searchText1.placeholder = 'البحث في ' + selectText1.innerHTML;
     }
 
 }
+
 

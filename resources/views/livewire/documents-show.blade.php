@@ -2,12 +2,15 @@
     <div class="tab-content mt-25" id="ap-tabContent">
         <div class="tab-pane fade show active" id="ap-overview" role="tabpanel" aria-labelledby="ap-overview-tab">
             
+            
+    
 
             <section class="packages" id="packages">
                 <div class="container">
               
                   <div class="row" style="margin-top: 30px;">
-                    @foreach ($documents as $document)
+                    @if (is_iterable($documents))
+                         @foreach ($documents as $document)
                         <div class="col-md-3 py-3 py-md-0 mb-4">
                         <div class="card" id="cardShow">
                             <a id="voir-plus" href="{{ route('ecommerce.product_detail',['language' => app()->getLocale(),'id'=>$document->id])}}">
@@ -15,13 +18,15 @@
                             <div class="card-body">
                             <h3>{{ $document->titre }}</h3>
                             <h4>{{ $document->person }}</h4>
-                            <p class="clamp-4 ">{{ $document->description }}</p>
+                            <p class="clamp-3">{{ $document->description }}</p>
                             اقرأ المزيد...</a>
                             </div>
                         </div>
                 
                         </div>
                     @endforeach
+                    @endif
+                   
                   </div>
                 </div>
             </section>
@@ -87,16 +92,20 @@
         
 
         <!-- Pagination -->
-        
-            <div class="col-12 d-flex justify-content-center">
+           
+            <div class="col-12 d-flex justify-content-center m-5">
                 <div class="user-pagination">
                     <div class="d-flex justify-content-lg-end justify-content-center mt-1 mb-30">
                         <div  class="pagination">
-                            Pagination ????
+                            {{-- @if ($documents && $documents->count() > 0) --}}
+                                {{$documents->links()}} 
+                            {{-- @endif --}}
                         </div>
                     </div>
                 </div>
             </div>
+            
+            
         
         </div><!-- End: .columns-2 -->
     </div>

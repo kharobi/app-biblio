@@ -2,7 +2,9 @@
 @section('description')
 @extends('layout.app')
 @section('content')
- <script src="https://cdn.tailwindcss.com"></script>
+ {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+ <script src="{{ asset('assets/js/tailwind.js') }}"></script>
+
 
 <div class="container-fluid">
     <div class="row">
@@ -104,11 +106,23 @@
                                             </button> --}}
 
 
-                                                <a  href="{{ Storage::url($document->document_file) }}"  target="_blank">
+                                                {{-- <a  href="{{ Storage::url($document->document_file) }}"  target="_blank" >
+                                                    <button class="btn btn-danger btn-default btn-squared border-0 px-25 my-sm-0 my-2 me-10">
+                                                        Voir pdf
+                                                    </button>
+                                                </a> --}}
+
+                                                
+                                                <a  href="{{ route('ecommerce.showpdf',['language' => app()->getLocale(),'id'=>$document->id])}}"  target="_blank">
                                                     <button class="btn btn-danger btn-default btn-squared border-0 px-25 my-sm-0 my-2 me-10">
                                                         Voir pdf
                                                     </button>
                                                 </a>
+
+                                                
+
+
+
                                             
                                            
                                         </div>

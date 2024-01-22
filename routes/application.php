@@ -57,6 +57,7 @@ Route::group(['middleware'=>'auth'],function(){
                 Route::get('orders',[EcommerceController::class,'orders'])->name('orders');
                 Route::get('sellers',[EcommerceController::class,'sellers'])->name('sellers');
                 Route::get('invoice',[EcommerceController::class,'invoice'])->name('invoice');
+                Route::get('showpdf',[EcommerceController::class,'showpdf'])->name('showpdf');
 
 
                 Route::resource('roles', RoleController::class);

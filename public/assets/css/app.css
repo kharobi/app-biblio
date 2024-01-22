@@ -59,7 +59,16 @@
     color: #f4623a;
   }
 }
+@font-face {
+  font-family: 'Simplified Arabic';
+  src: url('/fonts/Simplified Arabic.ttf') format('truetype'); /* Assurez-vous d'ajuster le chemin et le nom du fichier */
+  font-weight: normal;
+  font-style: normal;
+}
 
+body {
+  font-family: 'Simplified Arabic', sans-serif !important;
+}
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
@@ -127,7 +136,6 @@ header.masthead h1, header.masthead .h1 {
   cursor: pointer;
   position: relative;
   border-radius: 4px;
- 
 }
 #select img{
   width: 15px;
@@ -147,7 +155,21 @@ header.masthead h1, header.masthead .h1 {
 
 }
 #select ul.open{
-  max-height: 300px;
+  max-height:200px;
+  overflow-y: auto;
+  scrollbar-color: #555555 #dddddd;
+}
+
+#select ul.open::-webkit-scrollbar {
+  width: 6px; /* Pour Chrome, Safari, et Opera */
+}
+
+#select ul.open::-webkit-scrollbar-thumb {
+  background-color: #555555; /* Couleur du "thumb" (la partie que vous faites glisser) */
+}
+
+#select ul.open::-webkit-scrollbar-track {
+  background-color: #dddddd; /* Couleur de la piste de défilement */
 }
 
 #select ul li{
@@ -169,6 +191,43 @@ header.masthead h1, header.masthead .h1 {
   outline: none;
   font-size: 18px;
  
+}
+#resultSerch{
+  /* float: right; /* Utiliser float:right pour positionner à droite */
+  width: 90%;
+  height: 50px;
+  max-width: 800px;
+  display: flex;
+  padding: 2px;
+  border-radius: 4px;
+}
+.resultvide{
+  width: 250px;
+}
+#resulet-text{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  width: 100%;
+  padding: 20px 20px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 4px;
+
+}
+#resultSerch ul{
+  position: absolute;
+  top: 0%;
+  left: 0;
+  list-style: none;
+  background: #fff;
+  color: #555;
+  width: 98%;
+  border-radius: 4px;
+  /* max-height: 0px;
+  overflow: hidden; */
+  transition: max-height 0.5s;
 }
 
 
@@ -444,3 +503,9 @@ header.masthead h1, header.masthead .h1 {
     transform: scale(1.1);
 } */
 /*************************************/
+
+/***************PDF**********************/
+
+
+
+/***************PDF**********************/

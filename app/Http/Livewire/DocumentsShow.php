@@ -6,54 +6,67 @@ use Livewire\Component;
 use App\Models\Document;
 use Livewire\WithPagination;
 
+use function PHPUnit\Framework\isNull;
 
 class DocumentsShow extends Component
 {
     use WithPagination;
+    
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners =['reloadDocuments'];
 
     protected $documents;
+
+    public $query='';
+    public $type;
+
+
+    public function updatingQuery()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingType()
+    {
+        $this->resetPage();
+    }
+
+
+
     
 
-   
-    public function mount(){
-
-        $this->documents = Document::get();
-        //dd($this->documents);
-       
-    }
     public function render()
-    {
-        
+    {    $this->documents = new Document();
+        //dd($this->type);
         return view('livewire.documents-show',[
-            'documents' => $this->documents
+            
+
+                 'documents' => $this->documents->filtre($this->type,$this->query)->paginate(5)
         ]);
-        // return view('livewire.documents-show',compact('docs'));
+
+
+        // return view('livewire.documents-show',[
+        //     'documents' => Document::when(true, function ($query1) {  
+        //                 if (isNull($this->type)) {
+        //                     return $query1->whereNotNull('type_id')->where('person','like','%'.$this->query.'%');
+        //                 }else{
+        //                     dd($this->type);
+        //                     return $query1->where('type_id', $this->type)->where('person','like','%'.$this->query.'%');
+        //                 }
+        //             })->paginate(5),
+        // ]);
         
     }
 
     public function reloadDocuments(  $query , $type_id  ){
 
-        $this->documents = Document::query();
+        $this->query = $query;
+        $this->type = $type_id;
+        //dd($this->type);
+
+
         
-        if($type_id){
-            // dd($type_id);
-            //$this->documents = $this->documents->where('type_id',$type_id);
-            $this->documents = $this->documents->when($type_id, function ($query1, $type_id) {   
-                if ($type_id == "null") {
-                    return $query1->whereNotNull('type_id');
-                }else{
-                    return $query1->where('type_id', $type_id);
-                }
-            });
-        }
-        if($query){
-            $this->documents = $this->documents->where('person','like','%'.$query.'%');
-        }
+         }
 
-        $this->documents = $this->documents->get();
-
-    }
 }
